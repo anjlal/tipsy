@@ -22,6 +22,7 @@ class SettingsViewController: UIViewController {
         let defaults = UserDefaults.standard
         if let tipPercentage = defaults.object(forKey: "defaultTipPct") as? Float {
             tipPercentageLabel.text = "\(Int(tipPercentage))%"
+            tipSlider.value = tipPercentage
         } else {
             tipPercentageLabel.text = "\(Int(tipSlider.value))%"
         }

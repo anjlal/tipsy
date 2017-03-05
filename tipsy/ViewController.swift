@@ -75,6 +75,9 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        // The keyboard will always be displayed when view appears
+        billField.becomeFirstResponder()
         print("view did appear")
     }
     
