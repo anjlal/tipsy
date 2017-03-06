@@ -4,7 +4,7 @@ Tipsy is a tip calculator application for iOS.
 
 Submitted by: Angie Lal
 
-Time spent: **X** hours spent in total
+Time spent: 13.5 hours spent in total (including learning about auto-layout)
 
 ## User Stories
 
@@ -15,13 +15,13 @@ The following **required** functionality is complete:
 
 The following **optional** features are implemented:
 * [x] UI animations
-* [x] Remembering the bill amount across app restarts (if <3mins)
+* [x] Remembering the bill amount across app restarts (if < 3 mins)
 * [x] Using locale-specific currency and currency thousands separators.
 * [x] Making sure the keyboard is always visible and the bill amount is always the first responder. This way the user doesn't have to tap anywhere to use this app. Just launch the app and start typing.
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [x] Added auto layout to the Settings View Controller
 
 ## Video Walkthrough 
 
@@ -33,7 +33,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+* Spent time to better understand Optionals, and their associated error messages. 
+* Instead of spending time on the aesthetics of the UI, I read a tutorial for beginners on auto layout and applied what I learned to the Settings View Controller (still have a ways to go!).
 
 ## License
 
