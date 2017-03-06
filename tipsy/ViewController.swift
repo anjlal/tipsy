@@ -16,17 +16,41 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipPercentageLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     
+    struct Constants {
+        static let threeMinInSec = 3 * 60
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // Load setting preferences
+        
         let defaults = UserDefaults.standard
+        
+        // Load bill amount from last restart if < foo min ago
+        if let billAmount = defaults.object(forKey: "billAmount") {
+            let billTimestamp = defaults.object(forKey: "billTimestamp")
+            let elapsed = Date().timeIntervalSince(billTimestamp as! Date)
+            print(elapsed)
+            if (Int(elapsed) < Constants.threeMinInSec) {
+                billField.text = String(describing: billAmount)
+            }
+        }
+        
+        // Load setting preferences
         if let tipPercentage = defaults.object(forKey: "defaultTipPct") as? Float {
             tipPercentageLabel.text = "\(Int(tipPercentage))%"
         } else {
             tipPercentageLabel.text = "\(Int(tipSlider.value))%"
         }
+    }
+    
+    @IBAction func saveBillAmountOnDoneEditing(_ sender: Any) {
+
+        // Store setting preferences
+        let defaults = UserDefaults.standard
+        defaults.set(billField.text, forKey: "billAmount")
+        defaults.set(Date(), forKey: "billTimestamp")
     }
 
     override func didReceiveMemoryWarning() {
