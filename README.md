@@ -4,7 +4,7 @@ Tipsy is a tip calculator application for iOS.
 
 Submitted by: Angie Lal
 
-Time spent: 11.5 hours spent in total
+Time spent: 16 hours spent in total
 
 ## User Stories
 
@@ -21,20 +21,23 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] Added auto layout to the Settings View Controller
+- [x] Added auto layout to both view controllers
+- [x] Improved the UI from previous submission
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](https://raw.githubusercontent.com/anjlal/tipsy/master/tipsy.gif)
+![Video Walkthrough](https://raw.githubusercontent.com/anjlal/tipsy/master/tipsy_autolayout_1.gif)
+
+![Video Walkthrough](https://raw.githubusercontent.com/anjlal/tipsy/master/tipsy_w_autolayout_2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-* Spent time to better understand Optionals, and their associated error messages. 
-* Instead of spending time on the aesthetics of the UI, I read a tutorial for beginners on auto layout and applied what I learned to the Settings View Controller (still have a ways to go!).
+* Took time to better understand Optionals, and their associated error messages. 
+* Poured over tutorials on stack views and auto layout. Had the most trouble implementing auto layout with the main view controller; verifying each constraint helped me to eventually debug the issue.
 
 ## License
 
