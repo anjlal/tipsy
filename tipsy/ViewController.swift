@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var tipPercentageLabel: UILabel!
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var currencySymbol: UILabel!
+    @IBOutlet weak var topStack: UIStackView!
     
     struct Constants {
         static let threeMinInSec = 3 * 60
@@ -57,12 +58,6 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Animations
-        billField.center.x  -= view.bounds.width
-        tipLabel.center.x -= view.bounds.width
-        totalLabel.center.x -= view.bounds.width
-        tipPercentageLabel.center.x -= view.bounds.width
-        
         // Load new tip percentage default
         let defaults = UserDefaults.standard
         if let tipPercentage = defaults.object(forKey: "defaultTipPct") as? Float {
@@ -78,14 +73,11 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // Animations
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.8, initialSpringVelocity: 30.0, options: [], animations: {
-            self.billField.center.x += self.view.bounds.width
-            self.tipLabel.center.x += self.view.bounds.width
-            self.totalLabel.center.x += self.view.bounds.width
-            self.tipPercentageLabel.center.x += self.view.bounds.width
-        }, completion: nil)
-        
+        // Animation
+        UIView.animate(withDuration: 0.4, animations: {
+            self.topStack.arrangedSubviews.last!.isHidden = false
+        })
+
         // The keyboard will always be displayed when view appears
         billField.becomeFirstResponder()
         print("view did appear")
@@ -93,6 +85,12 @@ class ViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
+        // Animation
+        UIView.animate(withDuration: 0.4, animations: {
+            self.topStack.arrangedSubviews.last!.isHidden = true
+        })
+
         print("view will disappear")
     }
     
