@@ -47,7 +47,7 @@ class ViewController: UIViewController {
             }
         }
         
-        // Load tip preferences
+        // Load tip preferences from settings
         if let tipPercentage = defaults.object(forKey: "defaultTipPct") as? Float {
             tipPercentageLabel.text = "\(Int(tipPercentage))%"
         } else {
@@ -66,8 +66,8 @@ class ViewController: UIViewController {
         } else {
             tipPercentageLabel.text = "\(Int(tipSlider.value))%"
         }
+        // Re-calculate tip and total amounts
         calculateAmounts()
-        print("view will appear")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -80,7 +80,6 @@ class ViewController: UIViewController {
 
         // The keyboard will always be displayed when view appears
         billField.becomeFirstResponder()
-        print("view did appear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,13 +89,10 @@ class ViewController: UIViewController {
         UIView.animate(withDuration: 0.4, animations: {
             self.topStack.arrangedSubviews.last!.isHidden = true
         })
-
-        print("view will disappear")
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("view did disappear")
     }
     
     // Stores bill amount when no longer editing
@@ -110,6 +106,7 @@ class ViewController: UIViewController {
     
     // Formats amount based on locale
     func localeFormatter(amount: Double) -> String {
+
         // Use the current locale of the user's device to format the currency
         let currencyFormatter = NumberFormatter()
         currencyFormatter.usesGroupingSeparator = true
@@ -121,16 +118,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onTap(_ sender: Any) {
+        // Dismiss keyboard
         view.endEditing(true)
-        
     }
     
     @IBAction func sliderValueChanged(_ sender: Any) {
+
+        // Convert slider value to integer and assign to label
         tipPercentageLabel.text = "\(Int(tipSlider.value))%"
+
+        // Re-calculate tip and total amounts
         calculateAmounts()
     }
     
     @IBAction func billAmountChanged(_ sender: Any) {
+        // Re-calculate tip and total amounts
         calculateAmounts()
     }
     
@@ -163,11 +165,9 @@ class ViewController: UIViewController {
         let tip = bill * Double(tipPct)
         let total = bill + tip
         
+        // Format amounts per locale
         tipLabel.text = localeFormatter(amount: tip)
         totalLabel.text = localeFormatter(amount: total)
-        
-        //tipLabel.text = String(format: "$%.2f", tip)
-        //totalLabel.text = String(format: "$%.2f", total)
     }
 
     override func didReceiveMemoryWarning() {
